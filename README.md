@@ -1,4 +1,4 @@
-# 🏠 Address Parser using Named Entity Recognition (NER)
+# Address Parser using Named Entity Recognition (NER)
 
 ### Fine-tuning a Transformer-based model to extract structured address components
 
@@ -248,3 +248,17 @@ Each address is converted into a set of `(value, label)` pairs for easy downstre
 `123 Main Street, Apartment 5B, Wilmington, DE 19801`  
 **Parsed address →**  
 `[('123', 'STREET_NUM'), ('Main Street', 'STREET'), ('Apartment 5B', 'UNIT'), ('Wilmington', 'CITY'), ('DE', 'STATE'), ('19801', 'POSTAL')]`
+
+
+## Evaluation Metrics
+Metric	        Description
+Precision	     Correct entities out of predicted entities
+Recall	        Correct entities out of all true entities
+F1-score	        Harmonic mean of precision & recall
+Accuracy	        Overall label match rate
+
+## Future Enhancements
+
+-- Add more address formats for international coverage
+-- Integrate with Google Maps API for validation
+-- Publish the fine-tuned model on Hugging Face Hub
