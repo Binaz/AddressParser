@@ -2,9 +2,9 @@
 
 ### Fine-tuning a Transformer-based model to extract structured address components
 
-**Author:** [Binaz Pardiwala](https://github.com/YOUR_GITHUB_USERNAME)  
+**Author:** [Binaz Pardiwala](https://github.com/Binaz)  
 **Notebook:** [View on nbviewer](https://nbviewer.org/github/Binaz/AddressParser/blob/main/Address_Parser_Main.ipynb)  
-**Date:** November 2025  
+**Date:** October 2024  
 
 ---
 
@@ -170,97 +170,157 @@ nerTrainer("221B Baker Street, London NW1 6XE, UK")
 
 Below are sample address strings and the structured address components extracted by the fine-tuned **Address Parser** model.
 
-Each address is converted into a set of `(value, label)` pairs for easy downstream use.
+Each address is converted into a set of label and respective value pairs for easy downstream use.
+
+---
+# Address Parsing Results
+
+## 1. Address: 754-782 BROADWAY, 23, CHULA VISTA CA 919105372
+
+- **STREET_NUM**: `754 - 782`, Score: `1.0`
+- **STREET**: `BROADWAY`, Score: `1.0`
+- **CITY**: `CHULA VISTA`, Score: `1.0`
+- **STATE**: `CA`, Score: `1.0`
+- **POSTAL**: `919105372`, Score: `1.0`
 
 ---
 
-#### Example 1  
-**Address string →**  
-`I 70 East Bound Mile Marker 112 Greenfield, IN`  
-**Parsed address →**  
-`[('I 70 East Bound Mile Marker 112', 'STREET'), ('Greenfield', 'CITY'), ('IN', 'STATE')]`
+## 2. Address: Kashyap Property-1284 Leland Road-Manassas-VA-20111-Prince William County
 
-#### Example 2  
-**Address string →**  
-`TT Accident-I-81 MM297 NB-Strasburg-VA--Shenandoah County`  
-**Parsed address →**  
-`[('I-81 MM297 NB', 'STREET'), ('Strasburg', 'CITY'), ('VA', 'STATE'), ('Shenandoah County', 'COUNTY')]`
+- **NAME**: `kashyap property`, Score: `1.0`
+- **STREET_NUM**: `1284`, Score: `1.0`
+- **STREET**: `LELAND ROAD`, Score: `1.0`
+- **CITY**: `MANASSAS`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `20111`, Score: `1.0`
 
-#### Example 3  
-**Address string →**  
-`TT Accident-I-81 NB MM191.1-Lexington-VA--Rockbridge County`  
-**Parsed address →**  
-`[('I-81 NB MM191.1', 'STREET'), ('Lexington', 'CITY'), ('VA', 'STATE'), ('Rockbridge County', 'COUNTY')]`
+---
 
-####  Example 4  
-**Address string →**  
-`Interstate 70 westbound at mile marker 163.7, Williamsburg, MO, 63388, Callaway`  
-**Parsed address →**  
-`[('Interstate 70 westbound at mile marker 163.7', 'STREET'), ('Williamsburg', 'CITY'), ('MO', 'STATE'), ('63388', 'POSTAL'), ('Callaway', 'COUNTY')]`
+## 3. Address: The address of the suspected auto service station is 108 Harrison Street Southeast, Leesburg, VA 20198.
 
-#### Example 5  
-**Address string →**  
-`I-95 & Namaans Road, Tri-State Mall, Claymont, DE 19703 US`  
-**Parsed address →**  
-`[('I-95', 'STREET'), ('Namaans Road', 'STREET'), ('Tri-State Mall', 'PLACE'), ('Claymont', 'CITY'), ('DE', 'STATE'), ('19703', 'POSTAL'), ('US', 'COUNTRY')]`
+- **NAME**: `suspected auto service station`, Score: `0.9999`
+- **STREET_NUM**: `108`, Score: `1.0`
+- **STREET**: `HARRISON STREET SOUTHEAST`, Score: `1.0`
+- **CITY**: `LEESBURG`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `20198`, Score: `1.0`
 
-#### Example 6  
-**Address string →**  
-`3224 Phila Pike, Claymont, DE 19703 US`  
-**Parsed address →**  
-`[('3224', 'STREET_NUM'), ('Phila Pike', 'STREET'), ('Claymont', 'CITY'), ('DE', 'STATE'), ('19703', 'POSTAL'), ('US', 'COUNTRY')]`
+---
 
-#### Example 7  
-**Address string →**  
-`6000 Philadelphia Pike, Claymont, DE 19703 US`  
-**Parsed address →**  
-`[('6000', 'STREET_NUM'), ('Philadelphia Pike', 'STREET'), ('Claymont', 'CITY'), ('DE', 'STATE'), ('19703', 'POSTAL'), ('US', 'COUNTRY')]`
+## 4. Address: 7890 Old Mill Road, Richmond, VA 23225
 
-#### Example 8  
-**Address string →**  
-`35-A Salem Church Road, Newark, DE 19713 US`  
-**Parsed address →**  
-`[('35-A', 'STREET_NUM'), ('Salem Church Road', 'STREET'), ('Newark', 'CITY'), ('DE', 'STATE'), ('19713', 'POSTAL'), ('US', 'COUNTRY')]`
+- **STREET_NUM**: `7890`, Score: `1.0`
+- **STREET**: `OLD MILL ROAD`, Score: `1.0`
+- **CITY**: `RICHMOND`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `23225`, Score: `1.0`
 
-#### Example 9  
-**Address string →**  
-`28560 Landfill Lane, Jones Crossroads, Georgetown, DE 19947-6060 US`  
-**Parsed address →**  
-`[('28560', 'STREET_NUM'), ('Landfill Lane', 'STREET'), ('Jones Crossroads', 'PLACE'), ('Georgetown', 'CITY'), ('DE', 'STATE'), ('19947-6060', 'POSTAL'), ('US', 'COUNTRY')]`
+---
 
-#### Example 10  
-**Address string →**  
-`Kashyap Property-1284 Leland Road-Manassas-VA-20111-Prince William County`  
-**Parsed address →**  
-`[('1284', 'STREET_NUM'), ('Leland Road', 'STREET'), ('Manassas', 'CITY'), ('VA', 'STATE'), ('20111', 'POSTAL'), ('Prince William County', 'COUNTY')]`
+## 5. Address: Exit 54 on I-95 South near Fayetteville, NC
 
-#### Example 11  
-**Address string →**  
-`The construction site is at the corner of Signal Hill Road and Moore Drive in the 20111 area of Prince William County.`  
-**Parsed address →**  
-`[('Signal Hill Road', 'STREET'), ('Moore Drive', 'STREET'), ('20111', 'POSTAL'), ('Prince William County', 'COUNTY')]`
+- **STREET**: `EXIT 54 ON I-95 SOUTH`, Score: `0.8667`
+- **CITY**: `FAYETTEVILLE`, Score: `1.0`
+- **STATE**: `NC`, Score: `0.9998`
 
-#### Example 12  
-**Address string →**  
-`The address of the suspected auto service station is 108 Harrison Street Southeast, Leesburg, VA 20198.`  
-**Parsed address →**  
-`[('108', 'STREET_NUM'), ('Harrison Street Southeast', 'STREET'), ('Leesburg', 'CITY'), ('VA', 'STATE'), ('20198', 'POSTAL')]`
+---
 
-#### Example 13  
-**Address string →**  
-`7890 Old Mill Road, Richmond, VA 23225`  
-**Parsed address →**  
-`[('7890', 'STREET_NUM'), ('Old Mill Road', 'STREET'), ('Richmond', 'CITY'), ('VA', 'STATE'), ('23225', 'POSTAL')]`
+## 6. Address: Various locations throughout the Upper Peninsula, corporate address located at 920 10th Avenue North, varies, MI, 95855-0000, US
 
-#### Example 14  
-**Address string →**  
-`Exit 54 on I-95 South near Fayetteville, NC`  
-**Parsed address →**  
-`[('I-95', 'STREET'), ('54', 'STREET_NUM'), ('Fayetteville', 'CITY'), ('NC', 'STATE')]`
+- **STREET_NUM**: `920`, Score: `1.0`
+- **STREET**: `10TH AVENUE NORTH`, Score: `1.0`
+- **CITY**: `VARIES`, Score: `1.0`
+- **STATE**: `MI`, Score: `1.0`
+- **POSTAL**: `95855-0000`, Score: `1.0`
 
-#### Example 15  
-**Address string →**  
-`123 Main Street, Apartment 5B, Wilmington, DE 19801`  
-**Parsed address →**  
-`[('123', 'STREET_NUM'), ('Main Street', 'STREET'), ('Apartment 5B', 'UNIT'), ('Wilmington', 'CITY'), ('DE', 'STATE'), ('19801', 'POSTAL')]`
+---
 
+## 7. Address: 1228-1290 Middletown & Warwick Road, Middletown, DE 19709 US
+
+- **STREET_NUM**: `1228 - 1290`, Score: `1.0`
+- **STREET**: `MIDDLETOWN & WARWICK ROAD`, Score: `1.0`
+- **CITY**: `MIDDLETOWN`, Score: `1.0`
+- **STATE**: `DE`, Score: `1.0`
+- **POSTAL**: `19709`, Score: `1.0`
+
+---
+
+## 8. Address: Express Trucking Co-700 1st St-Harrison-VA-07029-Frederick County
+
+- **NAME**: `TRUCKING CO`, Score: `0.9005`
+- **STREET_NUM**: `700`, Score: `1.0`
+- **STREET**: `1ST ST`, Score: `1.0`
+- **CITY**: `HARRISON`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `07029`, Score: `1.0`
+- **CITY**: `FREDERICK COUNTY`, Score: `1.0`
+
+---
+
+## 9. Address: 4200 Summit Bridge Road, Summit Airport, Middletown, DE 19709 US
+
+- **STREET_NUM**: `4200`, Score: `1.0`
+- **STREET**: `SUMMIT BRIDGE ROAD`, Score: `1.0`
+- **CITY**: `SUMMIT AIRPORT`, Score: `0.9954`
+- **CITY**: `MIDDLETOWN`, Score: `1.0`
+- **STATE**: `DE`, Score: `1.0`
+- **POSTAL**: `19709`, Score: `1.0`
+
+---
+
+## 10. Address: The actual compost site is located across the street from a community member home: 17397 Count Turf Place.  However, the name of the business, Clairvoux LLC and address is: 40730 Farm Market Road, Leesburg 20176. The compost site is located on land they own in the community.  Route 7 West to Farm Market Road, turn right onto Alysheba Drive, left onto Count Turf.  Compost site is on right about 100 feet.
+
+- **NAME**: `ACTUAL COMPOST SITE`, Score: `0.9638`
+- **STREET_NUM**: `17397`, Score: `1.0`
+- **STREET**: `COUNT TURF PLACE`, Score: `1.0`
+- **NAME**: `CLAIRVOUX LLC`, Score: `0.9998`
+- **STREET_NUM**: `40730`, Score: `1.0`
+- **STREET**: `FARM MARKET ROAD`, Score: `1.0`
+- **CITY**: `LEESBURG`, Score: `1.0`
+- **POSTAL**: `20176`, Score: `1.0`
+
+---
+
+## 11. Address: Capitol Fiber, Inc - Recycling Center-6610 Electronic Drive-Springfield-VA-22151-Fairfax County
+
+- **NAME**: `CAPITOL FIBER, INC`, Score: `0.9999`
+- **STREET_NUM**: `6610`, Score: `1.0`
+- **STREET**: `ELECTRONIC DRIVE`, Score: `1.0`
+- **CITY**: `SPRINGFIELD`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `22151`, Score: `1.0`
+- **CITY**: `FAIRFAX COUNTY`, Score: `1.0`
+
+---
+
+## 12. Address: This incident took place at 980 Bayshore rd. Cape Charles, VA 23318
+
+- **STREET_NUM**: `980`, Score: `0.9999`
+- **STREET**: `BAYSHORE RD.`, Score: `0.9999`
+- **CITY**: `CAPE CHARLES`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `23318`, Score: `1.0`
+
+---
+
+## 13. Address: Oyster Farm at Kings Creek 500 Marina Village Cir Cape Charles, VA 23310
+
+- **NAME**: `OYSTER FARM AT KINGS`, Score: `0.9892`
+- **STREET_NUM**: `500`, Score: `1.0`
+- **STREET**: `MARINA VILLAGE CIR`, Score: `1.0`
+- **CITY**: `CAPE CHARLES`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `23310`, Score: `1.0`
+
+---
+
+## 14. Address: On North Curry St. between County St and Sewell Ave. Directly across the Street from 33 N.Curry St, Hampton,Va 23663-5858
+
+- **STREET**: `COUNTY ST AND SEWELL AVE`, Score: `0.9999`
+- **STREET_NUM**: `33`, Score: `1.0`
+- **STREET**: `N. CURRY ST`, Score: `1.0`
+- **CITY**: `HAMPTON`, Score: `1.0`
+- **STATE**: `VA`, Score: `1.0`
+- **POSTAL**: `23663-5858`, Score: `1.0`
+
+---
