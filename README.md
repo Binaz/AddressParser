@@ -178,25 +178,25 @@ Each address is converted into a set of `(value, label)` pairs for easy downstre
 **Address string →**  
 `I 70 East Bound Mile Marker 112 Greenfield, IN`  
 **Parsed address →**  
-`[('112', 'STREET_NUM'), ('I 70 East Bound Mile Marker', 'STREET'), ('Greenfield', 'CITY'), ('IN', 'STATE')]`
+`[('I 70 East Bound Mile Marker 112', 'STREET'), ('Greenfield', 'CITY'), ('IN', 'STATE')]`
 
 #### Example 2  
 **Address string →**  
 `TT Accident-I-81 MM297 NB-Strasburg-VA--Shenandoah County`  
 **Parsed address →**  
-`[('I-81', 'STREET'), ('MM297', 'STREET_NUM'), ('Strasburg', 'CITY'), ('VA', 'STATE'), ('Shenandoah County', 'COUNTY')]`
+`[('I-81 MM297 NB', 'STREET'), ('Strasburg', 'CITY'), ('VA', 'STATE'), ('Shenandoah County', 'COUNTY')]`
 
 #### Example 3  
 **Address string →**  
 `TT Accident-I-81 NB MM191.1-Lexington-VA--Rockbridge County`  
 **Parsed address →**  
-`[('I-81', 'STREET'), ('MM191.1', 'STREET_NUM'), ('Lexington', 'CITY'), ('VA', 'STATE'), ('Rockbridge County', 'COUNTY')]`
+`[('I-81 NB MM191.1', 'STREET'), ('Lexington', 'CITY'), ('VA', 'STATE'), ('Rockbridge County', 'COUNTY')]`
 
 ####  Example 4  
 **Address string →**  
 `Interstate 70 westbound at mile marker 163.7, Williamsburg, MO, 63388, Callaway`  
 **Parsed address →**  
-`[('Interstate 70', 'STREET'), ('163.7', 'STREET_NUM'), ('Williamsburg', 'CITY'), ('MO', 'STATE'), ('63388', 'POSTAL'), ('Callaway', 'COUNTY')]`
+`[('Interstate 70 westbound at mile marker 163.7', 'STREET'), ('Williamsburg', 'CITY'), ('MO', 'STATE'), ('63388', 'POSTAL'), ('Callaway', 'COUNTY')]`
 
 #### Example 5  
 **Address string →**  
