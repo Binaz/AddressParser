@@ -3,7 +3,7 @@
 ### Fine-tuning a Transformer-based model to extract structured address components
 
 **Author:** [Binaz Pardiwala](https://github.com/Binaz)  
-**Notebook:** [View on nbviewer](https://nbviewer.org/github/Binaz/AddressParser/blob/main/Address_Parser_Main.ipynb)  
+**Notebook:** [View on nbviewer](https://nbviewer.org/github/Binaz/nlp-address-extraction/blob/main/Address_Parser_Main.ipynb)  
 **Date:** October 2024  
 
 ---
